@@ -40,8 +40,8 @@ class Bus {
 var offset = 50;
 var bus1 = new Bus(300,20+offset);
 var bus2 = new Bus(100,60+offset*2);
-var bus3 = new Bus(100,140+offset*3);
-var bus4 = new Bus(300,190+offset*4);
+var bus3 = new Bus(100,220+offset*4);
+var bus4 = new Bus(300,110+3*offset);
 
 
 
@@ -75,6 +75,33 @@ function draw() {
   strokeWeight(5);
   rect(100-bus1.width/2,20-bus1.height/2+offset,bus1.width,bus1.height);
 
+ //Draw the landing box for the second bus
+ noFill();
+ stroke('white');
+ strokeWeight(5);
+ rect(300-bus2.width/2,60-bus2.height/2+2*offset,bus2.width,bus2.height);
+
+  //Bus 3, pulling into a parallel spot
+  noFill();
+  stroke('white');
+  strokeWeight(5);
+  rect(300-bus3.width/2,100+3*offset,bus3.width,bus3.height);
+
+  noFill();
+  stroke('white');
+  strokeWeight(5);
+  rect(300-bus4.width/2,180+4*offset,bus3.width,bus3.height);
+
+  //Place orange circles as cones to show the bounding box for each exercise
+  fill('orange');
+  stroke('black');
+  strokeWeight(1);
+ 
+  drawCones(100-bus1.width/2,20-bus1.height/2+offset);
+  drawCones(100-bus2.width/2,60-bus2.height/2+2*offset);
+  drawCones(100-bus3.width/2,100+3*offset);
+  drawCones(100-bus4.width/2,180+4*offset);
+
   bus1.draw();
 
   if(bus1.x<=100) {
@@ -86,12 +113,6 @@ function draw() {
       bus1.dx = -2;
     }
   }
-
-  //Draw the landing box for the second bus
-  noFill();
-  stroke('white');
-  strokeWeight(5);
-  rect(300-bus2.width/2,60-bus2.height/2+2*offset,bus2.width,bus2.height);
 
   if(bus2.x>=300) {
     bus2.dx = 0;
@@ -105,19 +126,12 @@ function draw() {
 
   bus2.draw();
 
-
-  //Bus 3, pulling into a parallel spot
-  noFill();
-  stroke('white');
-  strokeWeight(5);
-  rect(300-bus3.width/2,100+3*offset,bus3.width,bus3.height);
-
   if(bus3.x>=300) {
     bus3.dx = 0;
     bus3.frame++;
     if(bus3.frame==30) {
       bus3.x = 100;
-      bus3.y = 140+3*offset;
+      bus3.y = 220+offset*4;
       bus3.frame = 0;
       bus3.dx = 2;
     }
@@ -142,17 +156,14 @@ function draw() {
   bus3.draw();
 
   //Bus 4, pulling out of the same spot
-  noFill();
-  stroke('white');
-  strokeWeight(5);
-  rect(300-bus4.width/2,180+4*offset,bus3.width,bus3.height);
+  
   
   if(bus4.x<=100) {
     bus4.dx = 0;
     bus4.frame++;
     if(bus4.frame==30) {
       bus4.x = 300;
-      bus4.y = 190+4*offset;
+      bus4.y = 110+3*offset;
       bus4.frame = 0;
       bus4.dx = -2;
     }
@@ -179,7 +190,20 @@ function draw() {
   //Write text to describe the directions for the driver in each situation
   fill('black');
   text("Step 1: Forward Stop - Drive forward through the alley and stop with the\nfront most part of the vehicle in the box without going past the front of\nthe alley", 10, offset/2);
-  text("Step 2: Straight Line Backing");
-  text("Step 3: Parallel Parking");
+  text("Step 2: Straight Line Backing - You will demonstrate your ability to back\na vehicle in a straight line. Pull forward and stop when I raise my hand.\nThen back straight through the alley until the front of your vehcile has\ncleared the last set of cones at the far end of the alley.",10,offset*2-5);
+  text("Step 3: Forward Offset Tracking - You will demonstrate your ability to\nmanuever a vehicle around other objects while moving",10,offset*4-15);
   text("Step 4: Pulling out of a parallel spot");
+}
+
+function drawCones(box1x,box1y) {
+  circle(box1x,box1y-4,5);
+  circle(box1x+bus1.width,box1y-4,5);
+  circle(box1x,box1y+bus1.height+4,5);
+  circle(box1x+bus1.width*2,box1y-4,5);
+  circle(box1x+bus1.width*3,box1y-4,5);
+  circle(box1x+bus1.width*4,box1y-4,5);
+  circle(box1x+bus1.width*5,box1y-4,5);
+  circle(box1x+bus1.width*3,box1y+bus1.height+4,5);
+  circle(box1x+bus1.width*4,box1y+bus1.height+4,5);
+  circle(box1x+bus1.width*5,box1y+bus1.height+4,5);
 }
