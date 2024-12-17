@@ -55,6 +55,19 @@ function setup() {
 
 function draw() {
   background(200);
+
+    //Add lines in line with the top and bottom of each rectangle to show the path of the bus to show where the busses are supposed to be
+    stroke('white');
+    strokeWeight(3);
+    line(100,10+offset,300,10+offset);
+    line(100,30+offset,300,30+offset);
+    line(100,50+offset*2,300,50+offset*2);
+    line(100,70+offset*2,300,70+offset*2);
+    line(100,100+offset*3,300,100+offset*3);
+    line(100,120+offset*3,300,120+offset*3);
+    line(100,180+offset*4,300,180+offset*4);
+    line(100,200+offset*4,300,200+offset*4);
+  
   
   //Draws the landing box for the first bus
   noFill();
@@ -166,4 +179,7 @@ function draw() {
   //Write text to describe the directions for the driver in each situation
   fill('black');
   text("Step 1: Forward Stop - Drive forward through the alley and stop with the\nfront most part of the vehicle in the box without going past the front of\nthe alley", 10, offset/2);
+  text("Step 2: Straight Line Backing");
+  text("Step 3: Parallel Parking");
+  text("Step 4: Pulling out of a parallel spot");
 }
