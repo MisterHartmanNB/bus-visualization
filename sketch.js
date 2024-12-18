@@ -22,7 +22,10 @@ class Bus {
     this.move();
     this.rotate();
     rect(0,0,this.width,this.height);
+    fill('lightblue');
+    rect(0,2,10,16);
     this.unRotate();
+    
   }
 
   rotate() {
@@ -40,13 +43,13 @@ class Bus {
 var offset = 50;
 var bus1 = new Bus(300,20+offset);
 var bus2 = new Bus(100,60+offset*2);
-var bus3 = new Bus(100,220+offset*4);
+var bus3 = new Bus(100,230+offset*4);
 var bus4 = new Bus(300,110+3*offset);
 
 
 
 function setup() {
-  createCanvas(400,500);
+  createCanvas(400,450);
   bus1.dx = -2;
   bus2.dx = 2;
   bus3.dx = 2;
@@ -65,8 +68,8 @@ function draw() {
     line(100,70+offset*2,300,70+offset*2);
     line(100,100+offset*3,300,100+offset*3);
     line(100,120+offset*3,300,120+offset*3);
-    line(100,180+offset*4,300,180+offset*4);
-    line(100,200+offset*4,300,200+offset*4);
+    line(100,190+offset*4,300,190+offset*4);
+    line(100,210+offset*4,300,210+offset*4);
   
   
   //Draws the landing box for the first bus
@@ -90,7 +93,7 @@ function draw() {
   noFill();
   stroke('white');
   strokeWeight(5);
-  rect(300-bus4.width/2,180+4*offset,bus3.width,bus3.height);
+  rect(300-bus4.width/2,190+4*offset,bus3.width,bus3.height);
 
   //Place orange circles as cones to show the bounding box for each exercise
   fill('orange');
@@ -100,7 +103,7 @@ function draw() {
   drawCones(100-bus1.width/2,20-bus1.height/2+offset);
   drawCones(100-bus2.width/2,60-bus2.height/2+2*offset);
   drawCones(100-bus3.width/2,100+3*offset);
-  drawCones(100-bus4.width/2,180+4*offset);
+  drawCones(100-bus4.width/2,190+4*offset);
 
   bus1.draw();
 
@@ -131,13 +134,13 @@ function draw() {
     bus3.frame++;
     if(bus3.frame==30) {
       bus3.x = 100;
-      bus3.y = 220+offset*4;
+      bus3.y = 230+offset*4;
       bus3.frame = 0;
       bus3.dx = 2;
     }
   }
 
-  if(bus3.x>=150&&bus3.x<=250) {
+  if(bus3.x>=135&&bus3.x<=235) {
     bus3.dy = -0.3
   } else {
     bus3.dy = 0;
@@ -169,7 +172,7 @@ function draw() {
     }
   }
 
-  if(bus4.x>=150&&bus4.x<=250) {
+  if(bus4.x>=140&&bus4.x<=240) {
     bus4.dy = 0.3
   } else {
     bus4.dy = 0;
@@ -179,7 +182,7 @@ function draw() {
     bus4.dy = 0.9;
   }
 
-  if(bus4.x>=170&&bus4.x<=195) {
+  if(bus4.x>=160&&bus4.x<=185) {
     bus4.rotation += 0.018;
   } else if(bus4.x>=213&&bus4.x<=238) {
     bus4.rotation -= 0.018;
@@ -191,8 +194,8 @@ function draw() {
   fill('black');
   text("Step 1: Forward Stop - Drive forward through the alley and stop with the\nfront most part of the vehicle in the box without going past the front of\nthe alley", 10, offset/2);
   text("Step 2: Straight Line Backing - You will demonstrate your ability to back\na vehicle in a straight line. Pull forward and stop when I raise my hand.\nThen back straight through the alley until the front of your vehcile has\ncleared the last set of cones at the far end of the alley.",10,offset*2-5);
-  text("Step 3: Forward Offset Tracking - You will demonstrate your ability to\nmanuever a vehicle around other objects while moving",10,offset*4-15);
-  text("Step 4: Pulling out of a parallel spot");
+  text("Step 3: Forward Offset Tracking - You will demonstrate your ability to\nmanuever a vehicle around other objects while moving forward. Drive \nforward and steer to the left through the opposite lane, keeping the right\nmost rear tire between the cone and the line",10,offset*4-15);
+  text("Step 4: Reverse Offset Backing - You will demonstrate your ability to\noffset back and park a vehicle at the end of an alley. Starting parallel with\nthe outer boundary, offset back into the alley, bringing the rear most part\nof your vehicle within 3 feet of the rear of the alley. Stop with the rear\nmost part of the vehicle in the box.",10,offset*6+15);
 }
 
 function drawCones(box1x,box1y) {
